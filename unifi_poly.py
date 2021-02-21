@@ -125,8 +125,7 @@ class Controller(polyinterface.Controller):
         cams = await unifiprotect.update()
         
         for key,value in cams.items():
-            print(key, '->', value)
-        
+            print(key, '->', value["name"])        
         
         await session.close()
         await unifiprotect.async_disconnect_ws()
