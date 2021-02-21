@@ -16,7 +16,7 @@
             </accepts>
         </cmds>
     </nodeDef>
-    <nodeDef id="UNIFI_DEVICE" nls="MGR">
+    <nodeDef id="UNIFI_CAM" nls="MGR">
         <editors />
         <sts>
             <st id="GV2" editor="RECORDING" />
