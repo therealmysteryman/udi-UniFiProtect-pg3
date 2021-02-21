@@ -3,7 +3,7 @@
 ![Build Status](https://travis-ci.org/therealmysteryman/udi-UniFiProtect-nodeserver.svg?branch=master)
 
 This Poly provides an interface between Unifi Protect and Polyglot v2 server. 
-This nodeserver currently only support disabling and enabling the recording mode. 
+This nodeserver currently only support changing the recording mode. 
 
 ## Installation
 
