@@ -192,8 +192,8 @@ class Cam(polyinterface.Node):
         unifiprotect = UpvServer(session, self.parent.unifi_host, self.parent.unifi_port,self.parent.unifi_userid,self.parent.unifi_password)
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
-        await set_camera_recording(self, self.cameraId, strMode)
-        await set_device_status_light( self, self.cameraId, strMode, 'light')
+        await unifiprotect.set_camera_recording(self, self.cameraId, strMode)
+        await unifiprotect.set_device_status_light( self, self.cameraId, strMode, 'light')
         await session.close()
         await unifiprotect.async_disconnect_ws()
                 
