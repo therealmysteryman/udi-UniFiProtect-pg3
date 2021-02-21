@@ -189,7 +189,7 @@ class Cam(polyinterface.Node):
             
         session = ClientSession(cookie_jar=CookieJar(unsafe=True))
 
-        unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
+        unifiprotect = UpvServer(session, self.parent.unifi_host, self.parent.unifi_port,self.parent.unifi_userid,self.parent.unifi_password)
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
         await set_camera_recording(self, self.cameraId, strMode)
