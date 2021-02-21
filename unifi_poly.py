@@ -103,13 +103,12 @@ class Controller(polyinterface.Controller):
             self.hb = 0
 
     def discover(self, *args, **kwargs):
-        print ("test")
         cams = asyncio.run(self._getDevices()) 
         
         for key,value in cams.items():
             name  = value["name"]
             camId = key   
-            self.addNode(Cams(self,self.address,name,name,camId ))
+            self.addNode(Cam(self,self.address,name,name,camId ))
        
     def delete(self):
         LOGGER.info('Deleting Unifi')
@@ -156,11 +155,11 @@ class Controller(polyinterface.Controller):
     }
     drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
-class Cams(polyinterface.Node):
+class Cam(polyinterface.Node):
 
     def __init__(self, controller, primary, address, name,cameraId):
 
-        super(NetDevice, self).__init__(controller, primary, address, name)
+        super(Cam, self).__init__(controller, primary, address, name)
         self.queryON = True
         self.cameraId = cameraId
 
