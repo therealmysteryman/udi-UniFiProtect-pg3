@@ -122,7 +122,10 @@ class Controller(polyinterface.Controller):
         # Log in to Unifi Protect
         unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
         await unifiprotect.ensure_authenticated()
-        print (await unifiprotect.update())
+        cams = await unifiprotect.update()
+        
+        for key in cams:
+            print(key)
         
         
         await session.close()
