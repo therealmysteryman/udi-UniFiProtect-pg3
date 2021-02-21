@@ -193,7 +193,7 @@ class Cam(polyinterface.Node):
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
         await unifiprotect.set_camera_recording(self.cameraId, strMode)
-        await unifiprotect.set_device_status_light(self.cameraId, strMode, '')
+        await unifiprotect.set_device_status_light(self.cameraId, bLight, 'light')
         await session.close()
         await unifiprotect.async_disconnect_ws()
                 
