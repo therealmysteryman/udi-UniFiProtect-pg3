@@ -107,8 +107,8 @@ class Controller(polyinterface.Controller):
         
         for key,value in cams.items():
             name  = value["name"].replace("_","")
-            camId = key   
-            self.addNode(Cam(self,self.address,name,name,camId ))
+            myhash =  str(int(hashlib.md5(name.encode('utf8')).hexdigest(), 16) % (10 ** 8))
+            self.addNode(Cam(self,self.address,myhash,name,key ))
        
     def delete(self):
         LOGGER.info('Deleting Unifi')
@@ -200,9 +200,7 @@ class Cam(polyinterface.Node):
     drivers = [{'driver': 'GV2', 'value': 1, 'uom': 25}]
 
     id = 'UNIFI_CAM'
-    commands = {
-                'SET_RECORDING': setRecordingMode
-                }
+    commands = {'SET_RECORDING': setRecordingMode }
 
 if __name__ == "__main__":
     try:
