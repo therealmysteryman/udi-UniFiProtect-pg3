@@ -19,7 +19,6 @@
     <nodeDef id="UNIFI_DEVICE" nls="MGR">
         <editors />
         <sts>
-            <st id="GV1" editor="bool" />
             <st id="GV2" editor="RECORDING" />
         </sts>
         <cmds>
