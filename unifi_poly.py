@@ -123,12 +123,12 @@ class Controller(polyinterface.Controller):
         unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
-        #devices  = unifiprotect.devices()
+        devices  = unifiprotect.devices()
         
         await session.close()
         await unifiprotect.async_disconnect_ws()
         
-        #return devices 
+        return devices 
         
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
