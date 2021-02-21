@@ -184,7 +184,8 @@ class Cam(polyinterface.Node):
             
         asyncio.run(self._setRecordingMode(strMode,bLight)) 
     
-     async def _setRecordingMode (self, strMode, bLight) :
+    
+    async def _setRecordingMode (self, strMode, bLight) :
             
         session = ClientSession(cookie_jar=CookieJar(unsafe=True))
 
