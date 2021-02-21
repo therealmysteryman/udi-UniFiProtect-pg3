@@ -168,13 +168,13 @@ class Cam(polyinterface.Node):
 
     def query(self):
         recordingMode = self._getRecordingMode()
-        if ( recordingMode == "never")
+        if ( recordingMode == "never") :
             self.setDriver('GV2', 1)
-        elif ( recordingMode == "motion")
+        elif ( recordingMode == "motion") :
             self.setDriver('GV2', 2)
-        elif ( recordingMode == "always")
+        elif ( recordingMode == "always") :
             self.setDriver('GV2', 3)
-        elif ( recordingMode == "smartDetect")
+        elif ( recordingMode == "smartDetect") :
             self.setDriver('GV2', 4)
     
     def setRecordingMode(self,command):
