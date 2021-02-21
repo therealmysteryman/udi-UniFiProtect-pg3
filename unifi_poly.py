@@ -104,9 +104,9 @@ class Controller(polyinterface.Controller):
 
     def discover(self, *args, **kwargs):
         print ("test")
-        cams = asyncio.run(self._getDevices()) 
+        asyncio.run(self._getDevices()) 
         
-        print (cams)
+        #print (cams)
         
         #for netdevice in self.mac_device.split(','):
         #    name =  netdevice.replace(":","") 
@@ -128,7 +128,7 @@ class Controller(polyinterface.Controller):
         await session.close()
         await unifiprotect.async_disconnect_ws()
         
-        return devices 
+        #return devices 
         
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
