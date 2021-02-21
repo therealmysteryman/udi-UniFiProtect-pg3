@@ -116,14 +116,14 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Deleting Unifi')
 
     async def _getDevices (self) :
-        device = None
+        #device = None
         session = ClientSession(cookie_jar=CookieJar(unsafe=True))
 
         # Log in to Unifi Protect
         unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
-        devices  = await unifiprotect.devices()
+        unifiprotect.devices()
         
         await session.close()
         await unifiprotect.async_disconnect_ws()
