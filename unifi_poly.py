@@ -199,7 +199,7 @@ class Cam(polyinterface.Node):
                 
     drivers = [{'driver': 'GV2', 'value': 1, 'uom': 25}]
 
-    id = 'UNIFI_DEVICE'
+    id = 'UNIFI_CAM'
     commands = {
                 'SET_RECORDING': setRecordingMode
                 }
