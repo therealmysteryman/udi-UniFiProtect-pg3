@@ -6,8 +6,8 @@ ND-controller-ICON = GenericCtl
 CMD-DISCOVER-NAME = Discover
 CMD-INSTALL_PROFILE-NAME = Install Profile
 
-ND-UNIFI_DEVICE-NAME = Network Device
-ND-UNIFI_DEVICE-ICON = GenericCtl
+ND-UNIFI_CAM-NAME = Network Device
+ND-UNIFI_CAM-ICON = GenericCtl
 
 CMD-SET_RECORDING-NAME = Set Recording Mode
 RECORDING_SEL-1 = never
