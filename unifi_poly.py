@@ -104,14 +104,13 @@ class Controller(polyinterface.Controller):
 
     def discover(self, *args, **kwargs):
         print ("test")
-        asyncio.run(self._getDevices()) 
+        cams = asyncio.run(self._getDevices()) 
         
-        #print (cams)
-        
-        #for netdevice in self.mac_device.split(','):
-        #    name =  netdevice.replace(":","") 
-        #    self.addNode(NetDevice(self,self.address,name,name,ctrl,netdevice ))
-
+        for key,value in cams.items():
+            name  = value["name"]
+            camId = key   
+            self.addNode(Cams(self,self.address,name,name,camId ))
+       
     def delete(self):
         LOGGER.info('Deleting Unifi')
 
@@ -123,14 +122,11 @@ class Controller(polyinterface.Controller):
         unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
         await unifiprotect.ensure_authenticated()
         cams = await unifiprotect.update()
-        
-        for key,value in cams.items():
-            print(key, '->', value["name"])        
-        
+               
         await session.close()
         await unifiprotect.async_disconnect_ws()
         
-        #return devices 
+        return cams 
         
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
@@ -160,7 +156,7 @@ class Controller(polyinterface.Controller):
     }
     drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
-class NetDevice(polyinterface.Node):
+class Cams(polyinterface.Node):
 
     def __init__(self, controller, primary, address, name,cameraId):
 
