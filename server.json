@@ -1,0 +1,29 @@
+{
+    "name": "UnifiPresence",
+    "docs": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot/blob/master/README.md",
+    "type": "python3",
+    "executable": "unifi_poly.py",
+    "install": "install.sh",
+    "shortPoll": "90",
+    "longPoll": "600",
+    "description": "UniFi Device Network Presence Detection.",
+    "notice": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot/blob/master/LICENSE",
+    "credits": [
+        {
+            "title": "UnifiPresence: A Polyglot v2 interface to Unifi Controller",
+            "author": "AutomationGeek",
+            "version": "2.0.1",
+            "date": "February 12, 2021",
+            "source": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot",
+            "license": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot/blob/master/README.md"
+        },
+	{
+            "title": "udi-poly-template-python: A Polyglot v2 Poly template",
+            "author": "James Milne (Einstein.42)",
+            "version": "2.0.0",
+            "date": "November 8, 2017",
+            "source": "https://github.com/Einstein42/udi-poly-template-python",
+            "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
+        }
+    ]
+}
