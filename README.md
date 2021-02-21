@@ -1,6 +1,6 @@
-# UniFi Device Network Presence Detection Polyglot V2 Node Server
+# UniFi Protect Camera Polyglot V2 Node Server
 
-![Build Status](https://travis-ci.org/therealmysteryman/udi-presenceUnifi-nodeserver.svg?branch=master)
+![Build Status](https://travis-ci.org/therealmysteryman/udi-UniFiProtect-nodeserver.svg?branch=master)
 
 This Poly provides an interface between Unifi Controller and Polyglot v2 server. 
 
@@ -18,12 +18,10 @@ You can install from Polyglot V2 store or manually :
     - unifi_port
     - unifi_userid
     - unifi_password
-    - unifi_siteid 
-    - mac_device -> comma delimited list of mac address of device to detect presence on the network.
 
 ## Source
 
-1. Using this Python Library to control the Unifi - https://github.com/NickWaterton/Unifi-websocket-interface/blob/master/controller.py
+1. Using this Python Library to control the Unifi Protect - https://github.com/briis/pyunifiprotect/tree/master/pyunifiprotect
 2. Based on the Node Server Template - https://github.com/Einstein42/udi-poly-template-python
 
 ## Release Notes
