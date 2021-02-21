@@ -82,9 +82,9 @@ class Controller(polyinterface.Controller):
            
     def shortPoll(self):
         self.setDriver('ST', 1)
-        #for node in self.nodes:
-        #    if  self.nodes[node].queryON == True :
-        #        self.nodes[node].update()
+        for node in self.nodes:
+            if  self.nodes[node].queryON == True :
+                self.nodes[node].query()
                 
     def longPoll(self):
         self.heartbeat()
@@ -167,7 +167,15 @@ class Cam(polyinterface.Node):
         pass
 
     def query(self):
-        self.reportDrivers()
+        recordingMode = self._getRecordingMode()
+        if ( recordingMode == "never")
+            self.setDriver('GV2', 1)
+        elif ( recordingMode == "motion")
+            self.setDriver('GV2', 2)
+        elif ( recordingMode == "always")
+            self.setDriver('GV2', 3)
+        elif ( recordingMode == "smartDetect")
+            self.setDriver('GV2', 4)
     
     def setRecordingMode(self,command):
         bLight = True
@@ -184,7 +192,22 @@ class Cam(polyinterface.Node):
             
         asyncio.run(self._setRecordingMode(strMode,bLight)) 
     
-    
+    async def _getRecordingMode (self, strMode, bLight) :
+        recordingMode = None
+        session = ClientSession(cookie_jar=CookieJar(unsafe=True))
+
+        unifiprotect = UpvServer(session, self.parent.unifi_host, self.parent.unifi_port,self.parent.unifi_userid,self.parent.unifi_password)
+        await unifiprotect.ensure_authenticated()
+        
+        cams = await unifiprotect.update()
+        cam = cams[self.cameraId]
+        recordingMode = cam["recording_mode"]
+        
+        await session.close()
+        await unifiprotect.async_disconnect_ws()   
+        
+        return recordingMode
+       
     async def _setRecordingMode (self, strMode, bLight) :
             
         session = ClientSession(cookie_jar=CookieJar(unsafe=True))
