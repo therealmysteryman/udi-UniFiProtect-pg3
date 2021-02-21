@@ -176,6 +176,7 @@ class NetDevice(polyinterface.Node):
         self.reportDrivers()
     
     def setRecordingMode(self,command):
+        pass
         # async def set_camera_recording(self, camera_id: str, mode: str) -> bool:
         # async def set_device_status_light( self, device_id: str, mode: bool, device_model: str  ) -> bool:
         # intEffect = int(command.get('value'))
