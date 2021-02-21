@@ -1,13 +1,13 @@
 {
-    "name": "UnifiPresence",
-    "docs": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot/blob/master/README.md",
+    "name": "UnifiProtect",
+    "docs": "https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver/blob/master/README.md",
     "type": "python3",
     "executable": "unifi_poly.py",
     "install": "install.sh",
     "shortPoll": "90",
     "longPoll": "600",
-    "description": "UniFi Device Network Presence Detection.",
-    "notice": "https://github.com/therealmysteryman/udi-presenceUnifi-polyglot/blob/master/LICENSE",
+    "description": "UniFi Protect.",
+    "notice": "https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver/blob/master/LICENSE",
     "credits": [
         {
             "title": "UnifiPresence: A Polyglot v2 interface to Unifi Controller",
