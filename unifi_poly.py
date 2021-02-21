@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
 """
-This is a NodeServer for Unifi Device Detection written by automationgeek (Jean-Francois Tremblay)
+This is a NodeServer for Unifi Protect written by automationgeek (Jean-Francois Tremblay)
 based on the NodeServer template for Polyglot v2 written in Python2/3 by Einstein.42 (James Milne) milne.james@gmail.com
 """
 
 import polyinterface
 import hashlib
 import warnings 
+import aiohttp
 import time
 import json
 import sys
-from urllib.parse import quote
 from copy import deepcopy
-from unifi_api_controller import Controller as unifictl
-
-
+from urllib.parse import quote
+from aiohttp import ClientSession, CookieJar
+from pyunifiprotect.unifi_protect_server import UpvServer
 
 LOGGER = polyinterface.LOGGER
 SERVERDATA = json.load(open('server.json'))
@@ -36,15 +36,13 @@ class Controller(polyinterface.Controller):
 
     def __init__(self, polyglot):
         super(Controller, self).__init__(polyglot)
-        self.name = 'UnifiCtrl'
+        self.name = 'UnifiProtect'
         self.queryON = False
         self.hb = 0
         self.unifi_host = ""
         self.unifi_port = ""
         self.unifi_userid = "" 
         self.unifi_password = ""
-        self.unifi_siteid = ""
-        self.mac_device = ""
 
     def start(self):
         LOGGER.info('Started Unifi for v2 NodeServer version %s', str(VERSION))
@@ -69,19 +67,9 @@ class Controller(polyinterface.Controller):
                 self.unifi_password = self.polyConfig['customParams']['unifi_password']
             else:
                 self.unifi_password = ""
-            
-            if 'unifi_siteid' in self.polyConfig['customParams']:
-                self.unifi_siteid = self.polyConfig['customParams']['unifi_siteid']
-            else:
-                self.unifi_siteid = "default"  
-                
-            if 'mac_device' in self.polyConfig['customParams']:
-                self.mac_device = self.polyConfig['customParams']['mac_device']
-            else:
-                self.mac_device = ""      
-                                
-            if self.unifi_host == "" or self.unifi_userid == "" or self.unifi_password == "" or self.mac_device == "" :
-                LOGGER.error('Unifi requires \'unifi_host\' \'unifi_userid\' \'unifi_password\' \'mac_device\' parameters to be specified in custom configuration.')
+                              
+            if self.unifi_host == "" or self.unifi_userid == "" or self.unifi_password == "" :
+                LOGGER.error('Unifi requires \'unifi_host\' \'unifi_userid\' \'unifi_password\' parameters to be specified in custom configuration.')
                 return False
             else:
                 self.check_profile()
@@ -113,16 +101,38 @@ class Controller(polyinterface.Controller):
             self.hb = 0
 
     def discover(self, *args, **kwargs):
+        devices = asyncio.run(self._getDevices()) 
         
-        ctrl = unifictl(self.unifi_host,self.unifi_userid,self.unifi_password,self.unifi_port,site_id=self.unifi_siteid,ssl_verify=False)
+        print (devices)
         
-        for netdevice in self.mac_device.split(','):
-            name =  netdevice.replace(":","") 
-            self.addNode(NetDevice(self,self.address,name,name,ctrl,netdevice ))
+        #for netdevice in self.mac_device.split(','):
+        #    name =  netdevice.replace(":","") 
+        #    self.addNode(NetDevice(self,self.address,name,name,ctrl,netdevice ))
 
     def delete(self):
         LOGGER.info('Deleting Unifi')
 
+    async def _getDevices (self) :
+        device = None
+        session = ClientSession(cookie_jar=CookieJar(unsafe=True))
+
+        # Log in to Unifi Protect
+        unifiprotect = UpvServer(
+            session,
+            self.unifi_host,
+            self.unifi_port,
+            self.unifi_userid,
+            self.unifi_password,
+        )
+        await unifiprotect.ensure_authenticated()
+        await unifiprotect.update()
+        devices  = unifiprotect.devices()
+        
+        await session.close()
+        await unifiprotect.async_disconnect_ws()
+        
+        return devices 
+        
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
         # Set Default profile version if not Found
@@ -153,31 +163,24 @@ class Controller(polyinterface.Controller):
 
 class NetDevice(polyinterface.Node):
 
-    def __init__(self, controller, primary, address, name,ctrl, mac):
+    def __init__(self, controller, primary, address, name,cameraId):
 
         super(NetDevice, self).__init__(controller, primary, address, name)
         self.queryON = True
-        self.deviceMac = mac
-        self.unifiCtrl = ctrl
+        self.cameraId = cameraId
 
     def start(self):
-        self.update()
+        pass
 
     def query(self):
         self.reportDrivers()
-        
-    def update(self):
-        try :
-            if ( 'essid' in self.unifiCtrl.get_client(self.deviceMac) ) :
-                self.setDriver('GV1',1)
-            else:
-                self.setDriver('GV1',0)
+    
+    def setRecordingMode(self,command):
+        # async def set_camera_recording(self, camera_id: str, mode: str) -> bool:
+        # async def set_device_status_light( self, device_id: str, mode: bool, device_model: str  ) -> bool:
+        # intEffect = int(command.get('value'))
             
-        except Exception as ex :
-            self.setDriver('GV1',0)
-            LOGGER.info('update: %s', str(ex))
-            
-    drivers = [{'driver': 'GV1', 'value': 0, 'uom': 2}]
+    drivers = [{'driver': 'GV2', 'value': 1, 'uom': 25}]
 
     id = 'UNIFI_DEVICE'
     commands = {
