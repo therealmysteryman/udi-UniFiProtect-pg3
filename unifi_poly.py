@@ -201,9 +201,7 @@ class Cam(polyinterface.Node):
         
         cams = await unifiprotect.update()
         cam = cams[self.cameraId]
-        print (cam)
         recordingMode = cam["recording_mode"]
-        print(recordingMode)
         
         await session.close()
         await unifiprotect.async_disconnect_ws()   
