@@ -123,7 +123,7 @@ class Controller(polyinterface.Controller):
         unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
         await unifiprotect.ensure_authenticated()
         await unifiprotect.update()
-        asyncio.run(unifiprotect.devices())
+        await unifiprotect.devices()
         
         await session.close()
         await unifiprotect.async_disconnect_ws()
