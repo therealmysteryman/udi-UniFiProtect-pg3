@@ -170,15 +170,37 @@ class Cam(polyinterface.Node):
         self.reportDrivers()
     
     def setRecordingMode(self,command):
-        pass
-        # async def set_camera_recording(self, camera_id: str, mode: str) -> bool:
-        # async def set_device_status_light( self, device_id: str, mode: bool, device_model: str  ) -> bool:
-        # intEffect = int(command.get('value'))
+        bLight = True
+        intEffect = int(command.get('value'))
+        if ( intEffect == 1 ):
+            strMode = "never"
+            bLight = False
+        elif ( intEffect == 2 ):
+            strMode = "motion"
+        elif ( intEffect == 3 ):
+            strMode = "always"
+        elif ( intEffect == 4 ):
+            strMode = "smartDetect"
             
+        asyncio.run(self._setRecordingMode(strMode,bLight)) 
+    
+     async def _setRecordingMode (self, strMode, bLight) :
+            
+        session = ClientSession(cookie_jar=CookieJar(unsafe=True))
+
+        unifiprotect = UpvServer(session, self.unifi_host, self.unifi_port,self.unifi_userid,self.unifi_password)
+        await unifiprotect.ensure_authenticated()
+        await unifiprotect.update()
+        await set_camera_recording(self, self.cameraId, strMode)
+        await set_device_status_light( self, self.cameraId, strMode, 'light')
+        await session.close()
+        await unifiprotect.async_disconnect_ws()
+                
     drivers = [{'driver': 'GV2', 'value': 1, 'uom': 25}]
 
     id = 'UNIFI_DEVICE'
     commands = {
+                'SET_RECORDING': setRecordingMode
                 }
 
 if __name__ == "__main__":
