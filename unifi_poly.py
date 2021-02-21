@@ -106,7 +106,7 @@ class Controller(polyinterface.Controller):
         cams = asyncio.run(self._getDevices()) 
         
         for key,value in cams.items():
-            name  = value["name"]
+            name  = value["name"].replace("_","")
             camId = key   
             self.addNode(Cam(self,self.address,name,name,camId ))
        
