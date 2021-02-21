@@ -47,7 +47,7 @@ class Controller(polyinterface.Controller):
         self.unifi_password = ""
 
     def start(self):
-        LOGGER.info('Started Unifi for v2 NodeServer version %s', str(VERSION))
+        LOGGER.info('Started Unifi Protect for v2 NodeServer version %s', str(VERSION))
         self.setDriver('ST', 0)
         try:
             if 'unifi_host' in self.polyConfig['customParams']:
@@ -191,7 +191,7 @@ class NetDevice(polyinterface.Node):
 
 if __name__ == "__main__":
     try:
-        polyglot = polyinterface.Interface('UnifiNodeServer')
+        polyglot = polyinterface.Interface('UnifiProtectNodeServer')
         polyglot.start()
         control = Controller(polyglot)
         control.runForever()
