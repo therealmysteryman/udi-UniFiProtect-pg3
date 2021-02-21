@@ -124,8 +124,8 @@ class Controller(polyinterface.Controller):
         await unifiprotect.ensure_authenticated()
         cams = await unifiprotect.update()
         
-        for key in cams:
-            print(key)
+        for key,value in cams.items():
+            print(key, '->', value)
         
         
         await session.close()
