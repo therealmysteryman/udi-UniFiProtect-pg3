@@ -103,9 +103,10 @@ class Controller(polyinterface.Controller):
             self.hb = 0
 
     def discover(self, *args, **kwargs):
-        devices = asyncio.run(self._getDevices()) 
+        print ("test")
+        #devices = asyncio.run(self._getDevices()) 
         
-        print (devices)
+        #print (devices)
         
         #for netdevice in self.mac_device.split(','):
         #    name =  netdevice.replace(":","") 
