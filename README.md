@@ -2,7 +2,8 @@
 
 ![Build Status](https://travis-ci.org/therealmysteryman/udi-UniFiProtect-nodeserver.svg?branch=master)
 
-This Poly provides an interface between Unifi Controller and Polyglot v2 server. 
+This Poly provides an interface between Unifi Protect and Polyglot v2 server. 
+This nodeserver currently only support disabling and enabling the recording mode. 
 
 ## Installation
 
