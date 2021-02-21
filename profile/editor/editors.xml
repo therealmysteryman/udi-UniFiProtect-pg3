@@ -5,8 +5,8 @@
         <range uom="2" subset="0,1" />
     </editor>
     
-    <editor id="MEFFECT">
-        <range uom="25" subset="1-4" nls="EFFECT_SEL" />      
+    <editor id="RECORDING">
+        <range uom="25" subset="1-4" nls="RECORDING_SEL" />      
     </editor>
     
 </editors>
