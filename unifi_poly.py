@@ -104,7 +104,7 @@ class Controller(polyinterface.Controller):
 
     def discover(self, *args, **kwargs):
         print ("test")
-        #devices = asyncio.run(self._getDevices()) 
+        asyncio.run(self._getDevices()) 
         
         #print (devices)
         
@@ -117,24 +117,24 @@ class Controller(polyinterface.Controller):
 
     async def _getDevices (self) :
         device = None
-        session = ClientSession(cookie_jar=CookieJar(unsafe=True))
+        #session = ClientSession(cookie_jar=CookieJar(unsafe=True))
 
         # Log in to Unifi Protect
-        unifiprotect = UpvServer(
-            session,
-            self.unifi_host,
-            self.unifi_port,
-            self.unifi_userid,
-            self.unifi_password,
-        )
-        await unifiprotect.ensure_authenticated()
-        await unifiprotect.update()
-        devices  = unifiprotect.devices()
+        #unifiprotect = UpvServer(
+        #    session,
+        #    self.unifi_host,
+        #    self.unifi_port,
+        #    self.unifi_userid,
+        #    self.unifi_password,
+        #)
+        #await unifiprotect.ensure_authenticated()
+        #await unifiprotect.update()
+        #devices  = unifiprotect.devices()
         
-        await session.close()
-        await unifiprotect.async_disconnect_ws()
+        #await session.close()
+        #await unifiprotect.async_disconnect_ws()
         
-        return devices 
+        #return devices 
         
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
