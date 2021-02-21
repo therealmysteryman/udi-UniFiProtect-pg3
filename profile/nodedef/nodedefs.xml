@@ -20,10 +20,14 @@
         <editors />
         <sts>
             <st id="GV1" editor="bool" />
+            <st id="GV2" editor="RECORDING" />
         </sts>
         <cmds>
             <sends />
             <accepts>
+                <cmd id="SET_RECORDING">
+                    <p id="" editor="RECORDING" init="GV2"  />
+                </cmd>
             </accepts>
         </cmds>
     </nodeDef>
