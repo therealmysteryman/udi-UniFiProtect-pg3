@@ -82,9 +82,9 @@ class Controller(polyinterface.Controller):
            
     def shortPoll(self):
         self.setDriver('ST', 1)
-        for node in self.nodes:
-            if  self.nodes[node].queryON == True :
-                self.nodes[node].update()
+        #for node in self.nodes:
+        #    if  self.nodes[node].queryON == True :
+        #        self.nodes[node].update()
                 
     def longPoll(self):
         self.heartbeat()
