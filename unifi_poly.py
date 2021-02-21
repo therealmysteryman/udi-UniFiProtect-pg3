@@ -167,7 +167,7 @@ class Cam(polyinterface.Node):
         pass
 
     def query(self):
-        recordingMode = self._getRecordingMode()
+        recordingMode = asyncio.run(self._getRecordingMode())
         if ( recordingMode == "never") :
             self.setDriver('GV2', 1)
         elif ( recordingMode == "motion") :
