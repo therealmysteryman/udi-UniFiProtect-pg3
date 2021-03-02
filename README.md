@@ -5,6 +5,8 @@
 This Poly provides an interface between Unifi Protect and Polyglot v2 server. 
 This nodeserver currently only support changing the recording mode. 
 
+** Not supported and currently not in the store **
+
 ## Installation
 
 Installation instructions
