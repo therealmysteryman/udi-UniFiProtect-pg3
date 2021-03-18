@@ -2,7 +2,7 @@
     "name": "UnifiProtect",
     "docs": "https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver/blob/master/README.md",
     "type": "python3",
-    "executable": "unifi_poly.py",
+    "executable": "unifip_poly.py",
     "install": "install.sh",
     "shortPoll": "90",
     "longPoll": "600",
