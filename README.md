@@ -14,7 +14,7 @@ Installation instructions
 You can install manually :
 
 1. cd ~/.polyglot/nodeservers
-2. git clone https://github.com/therealmysteryman/udi-presenceUnifi-nodeserver.git
+2. git clone https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver.git
 3. run ./install.sh to install the required dependency.
 4. Add following custom variable :
     - unifi_host
