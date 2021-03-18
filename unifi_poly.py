@@ -167,30 +167,40 @@ class Cam(polyinterface.Node):
         pass
 
     def query(self):
-        recordingMode = asyncio.run(self._getRecordingMode())
-        if ( recordingMode == "never") :
-            self.setDriver('GV2', 1)
-        elif ( recordingMode == "motion") :
-            self.setDriver('GV2', 2)
-        elif ( recordingMode == "always") :
-            self.setDriver('GV2', 3)
-        elif ( recordingMode == "smartDetect") :
-            self.setDriver('GV2', 4)
+        
+        try :
+            recordingMode = asyncio.run(self._getRecordingMode())
+            if ( recordingMode == "never") :
+                self.setDriver('GV2', 1)
+            elif ( recordingMode == "motion") :
+                self.setDriver('GV2', 2)
+            elif ( recordingMode == "always") :
+                self.setDriver('GV2', 3)
+            elif ( recordingMode == "smartDetect") :
+                self.setDriver('GV2', 4)
+                
+        except Exception as ex:
+            LOGGER.error('query: %s', str(ex))
     
     def setRecordingMode(self,command):
-        bLight = True
-        intEffect = int(command.get('value'))
-        if ( intEffect == 1 ):
-            strMode = "never"
-            bLight = False
-        elif ( intEffect == 2 ):
-            strMode = "motion"
-        elif ( intEffect == 3 ):
-            strMode = "always"
-        elif ( intEffect == 4 ):
-            strMode = "smartDetect"
-            
-        asyncio.run(self._setRecordingMode(strMode,bLight)) 
+        
+        try :
+            bLight = True
+            intEffect = int(command.get('value'))
+            if ( intEffect == 1 ):
+                strMode = "never"
+                bLight = False
+            elif ( intEffect == 2 ):
+                strMode = "motion"
+            elif ( intEffect == 3 ):
+                strMode = "always"
+            elif ( intEffect == 4 ):
+                strMode = "smartDetect"
+
+            asyncio.run(self._setRecordingMode(strMode,bLight)) 
+        
+        except Exception as ex:
+            LOGGER.error('setRecordingMode: %s', str(ex))
     
     async def _getRecordingMode (self) :
         recordingMode = None
