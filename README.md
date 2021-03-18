@@ -11,7 +11,7 @@ This nodeserver currently only support changing the recording mode.
 
 Installation instructions
 
-You can install from Polyglot V2 store or manually :
+You can install manually :
 
 1. cd ~/.polyglot/nodeservers
 2. git clone https://github.com/therealmysteryman/udi-presenceUnifi-nodeserver.git
