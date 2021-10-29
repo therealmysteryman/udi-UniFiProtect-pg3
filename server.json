@@ -12,8 +12,8 @@
         {
             "title": "UnifiPresence: A Polyglot v2 interface to Unifi Protect",
             "author": "AutomationGeek",
-            "version": "2.0.1",
-            "date": "February 20, 2021",
+            "version": "3.0.0",
+            "date": "October 29, 2021",
             "source": "https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver",
             "license": "https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver/blob/master/README.md"
         },
@@ -25,5 +25,14 @@
             "source": "https://github.com/Einstein42/udi-poly-template-python",
             "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
         }
-    ]
+    ],
+    "store": {
+        "developer": "jf.tremblay@gmail.com",
+        "purchaseOptions": [
+            {
+                "isPerpetual": true,
+                "price": 0
+            }
+        ]
+    }	
 }
