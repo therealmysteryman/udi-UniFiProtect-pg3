@@ -94,7 +94,7 @@ class Controller(udi_interface.Node):
             self.setDriver('ST', 1)
             for node in self.poly.nodes():
                 if  node.queryON == True :
-                    node.update()
+                    node.query()
         else:
             #self._newUsers()
             self.heartbeat()
