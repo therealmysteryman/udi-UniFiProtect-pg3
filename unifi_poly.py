@@ -53,7 +53,7 @@ class Controller(udi_interface.Node):
         polyglot.ready()
         polyglot.addNode(self)
         
-   def parameterHandler(self, params):
+    def parameterHandler(self, params):
         self.poly.Notices.clear()
         try:
             if 'unifi_host' in params:
