@@ -152,7 +152,8 @@ class Cam(udi_interface.Node):
         super(Cam, self).__init__(controller, primary, address, name)
         self.queryON = True
         self.cameraId = cameraId
-
+        self.parent = controller.getNode(primary)
+        
         controller.subscribe(controller.START, self.start, address)
         
     def start(self):
