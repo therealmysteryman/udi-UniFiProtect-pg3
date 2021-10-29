@@ -1,11 +1,11 @@
-# UniFi Protect Camera Polyglot V2 Node Server
+# UniFi Protect Camera Polyglot V3 Node Server
 
 ![Build Status](https://travis-ci.org/therealmysteryman/udi-UniFiProtect-nodeserver.svg?branch=master)
 
 This Poly provides an interface between Unifi Protect and Polyglot v2 server. 
 This nodeserver currently only support changing the recording mode. 
 
-** Not supported and currently not in the store **
+** Not supported **
 
 ## Installation
 
@@ -13,9 +13,6 @@ Installation instructions
 
 You can install manually :
 
-1. cd ~/.polyglot/nodeservers
-2. git clone https://github.com/therealmysteryman/udi-UniFiProtect-nodeserver.git
-3. run ./install.sh to install the required dependency.
 4. Add following custom variable :
     - unifi_host
     - unifi_port
