@@ -35,7 +35,7 @@ def get_profile_info(logger):
 
 class Controller(udi_interface.Node):
 
-    def __init__(self, polyglot):
+    def __init__(self, polyglot, primary, address, name):
         super(Controller, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
         self.name = 'UnifiProtect'
